@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="IMPACT: An Implicit Active-Set Augmented Lagrangian for Fast Contact-Implicit Trajectory Optimization. RSS 2026." />
+  <meta property="og:title" content="IMPACT | RSS 2026" />
+  <meta property="og:description" content="IMPACT achieves 2.9×–70× speedups on contact-implicit trajectory optimization with convergence guarantees." />
+  <meta property="og:type" content="website" />
+  <title>IMPACT | RSS 2026</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="static/css/style.css" />
+</head>
+<body>
+
+<!-- ================================================================
+     NAVIGATION
+================================================================ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#hero">IMPACT</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="#abstract" class="nav-link">Abstract</a></li>
+      <li><a href="#method"   class="nav-link">Method</a></li>
+      <li><a href="#results"  class="nav-link">Results</a></li>
+      <li><a href="#demo"     class="nav-link">Demo</a></li>
+      <li><a href="#bibtex"   class="nav-link">Cite</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ================================================================
+     HERO
+================================================================ -->
+<header id="hero" class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-inner container">
+    <div class="venue-pill">
+      <span class="venue-dot"></span>
+      RSS 2026
+    </div>
+
+    <h1 class="hero-title">
+      <span class="title-acronym">IMPACT</span>: An Implicit Active-Set Augmented Lagrangian<br />
+      for Fast Contact-Implicit Trajectory Optimization
+    </h1>
+
+    <div class="author-list">
+      <!-- TODO: replace href="#" with personal page URLs -->
+      <a href="#" class="author-link">Jiayun Li<sup>1</sup></a>
+      <span class="author-sep">&emsp;</span>
+      <a href="#" class="author-link">Dejian Gong<sup>1</sup></a>
+      <span class="author-sep">&emsp;</span>
+      <a href="#" class="author-link">Georgia Chalvatzaki<sup>1</sup></a>
+    </div>
+
+    <div class="affil-list">
+      <!-- TODO: update affiliations if needed -->
+      <span><sup>1</sup>&thinsp;TU Darmstadt &mdash; Intelligent Robotic Systems Lab</span>
+    </div>
+
+    <div class="hero-links">
+      <!-- TODO: replace href="#" with actual links -->
+      <a href="#" class="hero-btn hero-btn--primary">
+        <i class="fas fa-file-pdf"></i>&thinsp;Paper
+      </a>
+      <a href="https://github.com/JonasPflaume/impact_info" class="hero-btn" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>&thinsp;Code
+      </a>
+      <a href="#" class="hero-btn">
+        <i class="fas fa-video"></i>&thinsp;Video
+      </a>
+      <a href="#" class="hero-btn">
+        <i class="fas fa-file-archive"></i>&thinsp;Supplementary
+      </a>
+      <a href="#" class="hero-btn">
+        <i class="fas fa-external-link-alt"></i>&thinsp;OpenReview
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">13.8×</div>
+        <div class="stat-desc">Geom. Mean Speedup</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num">2.9×&ndash;70×</div>
+        <div class="stat-desc">Speedup Range on CITO</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-num">✓ Robot</div>
+        <div class="stat-desc">Real Hardware Demo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span>scroll</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</header>
+
+<!-- ================================================================
+     TEASER
+================================================================ -->
+<section class="teaser-section">
+  <div class="container">
+    <!--
+      TODO: Replace the placeholder below with your teaser figure or video.
+      For a video:   <video autoplay muted loop playsinline src="static/videos/teaser.mp4"></video>
+      For an image:  <img src="static/images/teaser.png" alt="Teaser" />
+    -->
+    <div class="media-placeholder teaser-placeholder">
+      <div class="placeholder-inner">
+        <i class="fas fa-film fa-3x"></i>
+        <p>Teaser Video / Overview Figure</p>
+        <small>Replace this block in <code>index.html</code> (search&nbsp;<code>&lt;!-- TODO: Replace teaser --&gt;</code>)</small>
+      </div>
+    </div>
+    <p class="teaser-caption">
+      IMPACT achieves significant speedups over state-of-the-art MPCC solvers on contact-implicit
+      trajectory optimization benchmarks while maintaining or improving solution quality, and runs
+      on real robotic hardware.
+    </p>
+  </div>
+</section>
+
+<!-- ================================================================
+     ABSTRACT
+================================================================ -->
+<section id="abstract" class="section bg-offwhite">
+  <div class="container container--narrow">
+    <h2 class="section-heading reveal">Abstract</h2>
+    <div class="abstract-body reveal">
+      <p>
+        Contact-implicit trajectory optimization (CITO) has attracted growing attention as a unified
+        framework for planning and control in contact-rich robotic tasks. Recent approaches have
+        demonstrated promising results in manipulation and locomotion without requiring a prescribed
+        contact-mode schedule. It is well known that the underlying
+        <strong>mathematical programs with complementarity constraints (MPCCs)</strong>
+        remain numerically ill-conditioned, and systematic, scalable solution strategies for CITO
+        remain an active area of research. More efficient and principled solvers that can handle
+        contact constraints are therefore essential to broaden the applicability of CITO.
+      </p>
+      <p>
+        In this work, we develop an <strong>augmented-Lagrangian approach</strong> to CITO for
+        solving general MPCCs with convergence guarantees. The method can be interpreted as
+        identifying the <em>implicit active contact set</em> on the fly during the trajectory
+        optimization iterations; we call this approach
+        <strong>IMPACT</strong>&thinsp;(<strong>IMP</strong>licit&thinsp;<strong>A</strong>ctive-set&thinsp;<strong>C</strong>ontact&thinsp;trajectory&thinsp;op<strong>T</strong>imization).
+      </p>
+      <p>
+        We provide an efficient C++ implementation tailored to trajectory-optimization workloads and
+        evaluate it on the open-source CITO and contact-implicit model predictive control (CI-MPC)
+        benchmarks. On CITO, IMPACT achieves <strong>2.9×&ndash;70× speedups</strong> over strong
+        baselines (geometric mean&nbsp;13.8×). On CI-MPC, we show improved control quality for
+        contact-rich trajectories on dexterous manipulation tasks in simulation. Finally, we
+        demonstrate the proposed method on real robotic hardware on a
+        <strong>T-shaped object pushing task</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     METHOD
+================================================================ -->
+<section id="method" class="section bg-dark">
+  <div class="container">
+    <h2 class="section-heading section-heading--light reveal">Method</h2>
+    <p class="section-lead section-lead--light reveal">
+      IMPACT reformulates CITO as an augmented Lagrangian problem over the MPCC structure,
+      implicitly discovering the active contact set during optimization—no mode enumeration required.
+    </p>
+
+    <!-- Overview figure -->
+    <div class="figure-wrap figure-wrap--wide reveal">
+      <!--
+        TODO: Replace with method overview figure.
+        <img src="static/images/method_overview.png" alt="IMPACT method overview" />
+      -->
+      <div class="media-placeholder">
+        <div class="placeholder-inner">
+          <i class="fas fa-project-diagram fa-3x"></i>
+          <p>Method Overview Figure</p>
+          <small>Replace with <code>&lt;img src="static/images/method_overview.png"&gt;</code></small>
+        </div>
+      </div>
+      <p class="fig-caption">
+        <strong>Fig. 1.</strong> [Add method overview figure and caption here.]
+      </p>
+    </div>
+
+    <!-- Feature cards -->
+    <div class="feature-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fas fa-square-root-alt"></i></div>
+        <h3>Augmented Lagrangian for MPCCs</h3>
+        <p>
+          We cast contact-implicit TO as an MPCC and apply a principled augmented Lagrangian
+          penalty scheme, obtaining convergence guarantees not present in pure penalty-relaxation
+          approaches.
+        </p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fas fa-crosshairs"></i></div>
+        <h3>Implicit Active-Set Detection</h3>
+        <p>
+          IMPACT identifies the active contact set implicitly from the dual iterates, avoiding
+          combinatorial mode enumeration while adapting naturally to contact changes.
+        </p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fas fa-microchip"></i></div>
+        <h3>Efficient C++ Implementation</h3>
+        <p>
+          Our C++ solver exploits the sparsity structure of TO problems and is designed for both
+          offline CITO and real-time CI-MPC workloads.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     RESULTS
+================================================================ -->
+<section id="results" class="section bg-offwhite">
+  <div class="container">
+    <h2 class="section-heading reveal">Experimental Results</h2>
+
+    <div class="tabs reveal" id="results-tabs">
+      <div class="tab-bar">
+        <button class="tab-pill active" data-tab="cito">CITO Benchmark</button>
+        <button class="tab-pill" data-tab="ci-mpc">CI-MPC Benchmark</button>
+        <button class="tab-pill" data-tab="hardware">Real Robot</button>
+      </div>
+
+      <!-- ── CITO Tab ── -->
+      <div class="tab-pane active" id="tab-cito">
+        <div class="result-callout-row">
+          <div class="result-callout result-callout--accent">
+            <div class="callout-number">13.8×</div>
+            <div class="callout-label">Geometric mean speedup<br />over baselines</div>
+          </div>
+          <div class="result-callout">
+            <div class="callout-number">2.9×&ndash;70×</div>
+            <div class="callout-label">Speedup range across<br />CITO benchmark tasks</div>
+          </div>
+        </div>
+        <div class="fig-row">
+          <div class="figure-wrap">
+            <!--
+              TODO: Add CITO speedup figure.
+              <img src="static/images/cito_speedup.png" alt="CITO speedup" />
+            -->
+            <div class="media-placeholder">
+              <div class="placeholder-inner">
+                <i class="fas fa-chart-bar fa-2x"></i>
+                <p>CITO Speedup Bar Chart</p>
+              </div>
+            </div>
+            <p class="fig-caption"><strong>Fig. 2.</strong> [Add CITO benchmark results figure.]</p>
+          </div>
+          <div class="figure-wrap">
+            <!--
+              TODO: Add convergence comparison figure.
+              <img src="static/images/convergence.png" alt="Convergence curves" />
+            -->
+            <div class="media-placeholder">
+              <div class="placeholder-inner">
+                <i class="fas fa-chart-line fa-2x"></i>
+                <p>Convergence Comparison</p>
+              </div>
+            </div>
+            <p class="fig-caption"><strong>Fig. 3.</strong> [Add convergence comparison figure.]</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CI-MPC Tab ── -->
+      <div class="tab-pane" id="tab-ci-mpc">
+        <div class="fig-row fig-row--single">
+          <div class="figure-wrap figure-wrap--wide">
+            <!--
+              TODO: Add CI-MPC results figure.
+              <img src="static/images/ci_mpc.png" alt="CI-MPC results" />
+            -->
+            <div class="media-placeholder">
+              <div class="placeholder-inner">
+                <i class="fas fa-hand-sparkles fa-2x"></i>
+                <p>CI-MPC Dexterous Manipulation Results</p>
+              </div>
+            </div>
+            <p class="fig-caption">
+              <strong>Fig. 4.</strong> [Add CI-MPC benchmark results. IMPACT shows improved control
+              quality on dexterous manipulation tasks.]
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Hardware Tab ── -->
+      <div class="tab-pane" id="tab-hardware">
+        <div class="fig-row fig-row--single">
+          <div class="figure-wrap figure-wrap--wide">
+            <!--
+              TODO: Embed real robot video.
+              <video controls playsinline src="static/videos/robot_demo.mp4"></video>
+              or an iframe for YouTube/Vimeo.
+            -->
+            <div class="media-placeholder media-placeholder--video">
+              <div class="placeholder-inner">
+                <i class="fas fa-play-circle fa-3x"></i>
+                <p>Real Robot Demo &ndash; T-Shaped Object Pushing</p>
+                <small>Replace with <code>&lt;video&gt;</code> or iframe embed</small>
+              </div>
+            </div>
+            <p class="fig-caption">
+              <strong>Video 1.</strong> IMPACT deployed on real robotic hardware for a T-shaped
+              object pushing task.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     DEMO / QUALITATIVE  (extensible gallery — duplicate .demo-card to add tasks)
+================================================================ -->
+<section id="demo" class="section bg-white">
+  <div class="container">
+    <h2 class="section-heading reveal">Qualitative Results</h2>
+    <p class="section-lead reveal">
+      IMPACT enables contact-rich trajectory optimization across a diverse set of tasks.
+    </p>
+
+    <div class="demo-grid">
+
+      <!-- Demo card 1 -->
+      <div class="demo-card reveal">
+        <div class="demo-media">
+          <!--
+            TODO: Replace placeholder with image or video.
+            <img src="static/images/demo_inhand.gif" alt="In-Hand Manipulation" />
+          -->
+          <div class="media-placeholder">
+            <div class="placeholder-inner">
+              <i class="fas fa-hand-rock fa-2x"></i>
+              <p>In-Hand Manipulation</p>
+            </div>
+          </div>
+        </div>
+        <div class="demo-caption">
+          <h3>In-Hand Manipulation</h3>
+          <p>Dexterous contact-rich in-hand manipulation optimized with IMPACT.</p>
+        </div>
+      </div>
+
+      <!-- Demo card 2 -->
+      <div class="demo-card reveal">
+        <div class="demo-media">
+          <!--
+            TODO: Replace placeholder.
+            <img src="static/images/demo_pushing.gif" alt="T-Shape Pushing" />
+          -->
+          <div class="media-placeholder">
+            <div class="placeholder-inner">
+              <i class="fas fa-arrows-alt fa-2x"></i>
+              <p>T-Shaped Object Pushing</p>
+            </div>
+          </div>
+        </div>
+        <div class="demo-caption">
+          <h3>T-Shaped Object Pushing (Real)</h3>
+          <p>Real robot hardware demonstration using IMPACT-planned trajectories.</p>
+        </div>
+      </div>
+
+      <!-- Demo card 3 -->
+      <div class="demo-card reveal">
+        <div class="demo-media">
+          <!--
+            TODO: Replace placeholder.
+            <img src="static/images/demo_locomotion.gif" alt="Locomotion" />
+          -->
+          <div class="media-placeholder">
+            <div class="placeholder-inner">
+              <i class="fas fa-walking fa-2x"></i>
+              <p>Locomotion Planning</p>
+            </div>
+          </div>
+        </div>
+        <div class="demo-caption">
+          <h3>Legged Locomotion</h3>
+          <p>Contact-implicit locomotion planning with automatically-discovered gaits.</p>
+        </div>
+      </div>
+
+    </div><!-- /.demo-grid -->
+  </div>
+</section>
+
+<!-- ================================================================
+     BIBTEX
+================================================================ -->
+<section id="bibtex" class="section bg-offwhite">
+  <div class="container container--narrow">
+    <h2 class="section-heading reveal">Citation</h2>
+    <p class="section-lead reveal">If you find this work useful, please cite:</p>
+
+    <div class="bibtex-box reveal">
+      <div class="bibtex-toolbar">
+        <span class="bibtex-label-pill">BibTeX</span>
+        <button class="copy-btn" id="copy-btn" title="Copy BibTeX">
+          <i class="far fa-copy"></i><span>&thinsp;Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code">@inproceedings{li2026impact,
+  title     = {{IMPACT}: An Implicit Active-Set Augmented Lagrangian for
+               Fast Contact-Implicit Trajectory Optimization},
+  author    = {Li, Jiayun and Gong, Dejian and Chalvatzaki, Georgia},
+  booktitle = {Robotics: Science and Systems ({RSS})},
+  year      = {2026},
+}</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     FOOTER
+================================================================ -->
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-title">IMPACT &bull; RSS 2026</p>
+    <p>
+      <i class="fab fa-creative-commons"></i>&thinsp;<i class="fab fa-creative-commons-by"></i>&thinsp;
+      Licensed under
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>.
+    </p>
+    <p class="footer-small">
+      Website design inspired by
+      <a href="https://nerfies.github.io" target="_blank" rel="noopener">Nerfies</a>.
+    </p>
+  </div>
+</footer>
+
+<script src="static/js/index.js"></script>
+</body>
+</html>

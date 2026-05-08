@@ -25,6 +25,35 @@ if (copyBtn && bibtexCode) {
   });
 }
 
+const autoplayVideos = document.querySelectorAll('video[autoplay]');
+
+if ('IntersectionObserver' in window) {
+  const videoObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        const video = entry.target;
+        video.muted = true;
+        video.playsInline = true;
+
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      });
+    },
+    { threshold: 0.25 }
+  );
+
+  autoplayVideos.forEach(video => videoObserver.observe(video));
+} else {
+  autoplayVideos.forEach(video => {
+    video.muted = true;
+    video.playsInline = true;
+    video.play().catch(() => {});
+  });
+}
+
 const revealObserver = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {

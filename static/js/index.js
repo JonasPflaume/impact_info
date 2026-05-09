@@ -25,6 +25,23 @@ if (copyBtn && bibtexCode) {
   });
 }
 
+document.querySelectorAll('video[data-playback-rate]').forEach(video => {
+  const playbackRate = Number.parseFloat(video.dataset.playbackRate);
+
+  if (!Number.isFinite(playbackRate) || playbackRate <= 0) {
+    return;
+  }
+
+  const setPlaybackRate = () => {
+    video.defaultPlaybackRate = playbackRate;
+    video.playbackRate = playbackRate;
+  };
+
+  setPlaybackRate();
+  video.addEventListener('loadedmetadata', setPlaybackRate);
+  video.addEventListener('play', setPlaybackRate);
+});
+
 const revealObserver = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {

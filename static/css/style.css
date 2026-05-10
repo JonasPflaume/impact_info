@@ -332,8 +332,17 @@ a.author-link:hover {
   box-shadow: var(--shadow-md);
 }
 
-@media (max-width: 700px) {
-  .allegro-video {
+.allegro-mobile-animation {
+  display: none;
+}
+
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  .allegro-video-desktop {
+    display: none;
+  }
+
+  .allegro-mobile-animation {
+    display: block;
     background: transparent;
     border: 0;
     box-shadow: none;

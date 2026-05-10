@@ -337,7 +337,7 @@ a.author-link:hover {
 }
 
 @media (max-width: 900px), (hover: none) and (pointer: coarse) {
-  .allegro-video-desktop {
+  .allegro-video-mount {
     display: none;
   }
 

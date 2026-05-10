@@ -44,11 +44,19 @@ document.querySelectorAll('video[data-playback-rate]').forEach(video => {
 
 document.querySelectorAll('.allegro-video-mount[data-video-src]').forEach(mount => {
   const desktopQuery = window.matchMedia('(min-width: 901px)');
+  const mobileAnimation = mount.parentElement.querySelector('.allegro-mobile-animation');
 
   const syncDesktopVideo = () => {
     if (!desktopQuery.matches) {
       mount.replaceChildren();
+      if (mobileAnimation) {
+        mobileAnimation.hidden = false;
+      }
       return;
+    }
+
+    if (mobileAnimation) {
+      mobileAnimation.hidden = true;
     }
 
     if (mount.querySelector('video')) {

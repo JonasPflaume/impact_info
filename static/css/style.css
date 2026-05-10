@@ -332,6 +332,14 @@ a.author-link:hover {
   box-shadow: var(--shadow-md);
 }
 
+@media (max-width: 700px) {
+  .allegro-video {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+}
+
 .teaser-caption {
   text-align: center;
   font-size: .92rem;

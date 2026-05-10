@@ -42,6 +42,32 @@ document.querySelectorAll('video[data-playback-rate]').forEach(video => {
   video.addEventListener('play', setPlaybackRate);
 });
 
+document.querySelectorAll('video[data-mobile-src][data-desktop-src]').forEach(video => {
+  const desktopQuery = window.matchMedia('(min-width: 901px)');
+
+  const setResponsiveSource = () => {
+    const src = desktopQuery.matches ? video.dataset.desktopSrc : video.dataset.mobileSrc;
+
+    if (!src || video.getAttribute('src') === src) {
+      return;
+    }
+
+    video.setAttribute('src', src);
+    video.load();
+
+    if (video.autoplay) {
+      video.play().catch(() => {});
+    }
+  };
+
+  setResponsiveSource();
+  if (typeof desktopQuery.addEventListener === 'function') {
+    desktopQuery.addEventListener('change', setResponsiveSource);
+  } else {
+    desktopQuery.addListener(setResponsiveSource);
+  }
+});
+
 const revealObserver = new IntersectionObserver(
   entries => {
     entries.forEach(entry => {

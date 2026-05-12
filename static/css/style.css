@@ -248,6 +248,14 @@ a.author-link:hover {
   border-color: transparent;
 }
 
+.arxiv-mark {
+  font-family: var(--font-head);
+  font-size: .86em;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
 .hero-btn--disabled {
   color: rgba(47, 59, 80, .7);
   cursor: default;
